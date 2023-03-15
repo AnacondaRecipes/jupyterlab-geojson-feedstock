@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyterlab-geojson-{{ version }}.tar.gz
-  sha256: 45da6d1df8fedf8edf3fc6bdf58106d99d7b4a982df978342512b37c75393825
+  url: https://github.com/jupyterlab/jupyter-renderers/archive/refs/tags/@jupyterlab/geojson-extension@3.3.1.tar.gz
+  sha256: 97d866920866098cd9c53835843a6f444dd5766a8e5e8cb8919b28e9874c7e08
 
 build:
   number: 0
