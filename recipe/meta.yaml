@@ -16,7 +16,7 @@ build:
 
 requirements:
   host:
-    - jupyter-packaging >=0.7.9,<1.0
+    - jupyter-packaging 0.7.9
     - jupyterlab >=3.0.0,<4.0.0
     - pip
     - python
