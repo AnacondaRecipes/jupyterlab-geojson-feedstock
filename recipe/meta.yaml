@@ -11,13 +11,14 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<36]
+  # jupyterlab is missing on s390x
+  skip: true  # [py<36 or (linux and s390x)]
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
     - jupyter-packaging 0.7.9
-    - jupyterlab >=3.0.0,<4.0.0
+    - jupyterlab 3.4.4
     - pip
     - python
     - setuptools
