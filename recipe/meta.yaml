@@ -26,6 +26,8 @@ requirements:
     - python
 
 test:
+  requires:
+    - pip
   commands:
     - pip check
     - test -f "${PREFIX}/share/jupyter/labextensions/@jupyterlab/geojson-extension/package.json"                                    # [unix]
