@@ -17,8 +17,8 @@ build:
 
 requirements:
   host:
-    - jupyter-packaging 0.7.9
-    - jupyterlab 3.4.4
+    - jupyter-packaging >=0.7.9,<1.0
+    - jupyterlab >=3.0.0,<4.0.0
     - pip
     - python
     - setuptools
@@ -33,8 +33,6 @@ test:
     - pip check
     - test -f "${PREFIX}/share/jupyter/labextensions/@jupyterlab/geojson-extension/package.json"                                    # [unix]
     - if exist %PREFIX%\\share\\jupyter\\labextensions\\@jupyterlab\\geojson-extension\\package.json (exit 0) else (exit 1)         # [win]
-  requires:
-    - pip
 
 about:
   home: https://github.com/jupyterlab/jupyter-renderers
