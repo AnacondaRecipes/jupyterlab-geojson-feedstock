@@ -1,6 +1,5 @@
 {% set name = "jupyterlab-geojson" %}
-{% set version = "3.3.1" %}
-
+{% set version = "3.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,34 +7,43 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyterlab-geojson-{{ version }}.tar.gz
-  sha256: 45da6d1df8fedf8edf3fc6bdf58106d99d7b4a982df978342512b37c75393825
+  sha256: 87640df0174f12dea44f1224843704b63fee7dcd1d35565e1dfedd1f7a81b9ee
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  # jupyterlab is missing on s390x
+  skip: true  # [py<36 or (linux and s390x)]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
-    - jupyter-packaging >=0.7.9,<0.8.0
+    - jupyter-packaging >=0.7.9,<1.0
+    - jupyterlab >=3.0.0,<4.0.0
     - pip
-    - python >=3.6
+    - python
+    - setuptools
+    - wheel
   run:
-    - python >=3.6
+    - python
 
 test:
+  requires:
+    - pip
   commands:
     - pip check
     - test -f "${PREFIX}/share/jupyter/labextensions/@jupyterlab/geojson-extension/package.json"                                    # [unix]
     - if exist %PREFIX%\\share\\jupyter\\labextensions\\@jupyterlab\\geojson-extension\\package.json (exit 0) else (exit 1)         # [win]
-  requires:
-    - pip
 
 about:
   home: https://github.com/jupyterlab/jupyter-renderers
   summary: GeoJSON renderer for JupyterLab
+  description: |
+    This package provides a GeoJSON renderer for JupyterLab.
   license: BSD-3-Clause
+  license_family: BSD
   license_file: LICENSE
+  dev_url: https://github.com/jupyterlab/jupyter-renderers/tree/master/packages/geojson-extension
+  doc_url: https://github.com/jupyterlab/jupyter-renderers/tree/master/packages/geojson-extension
 
 extra:
   recipe-maintainers:
