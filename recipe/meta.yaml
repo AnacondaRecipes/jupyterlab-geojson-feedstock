@@ -1,32 +1,34 @@
 {% set name = "jupyterlab-geojson" %}
-{% set version = "3.3.1" %}
+{% set version = "3.4.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyterlab-geojson-{{ version }}.tar.gz
-  sha256: 45da6d1df8fedf8edf3fc6bdf58106d99d7b4a982df978342512b37c75393825
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyterlab_geojson-{{ version }}.tar.gz
+  sha256: cc7f6015f75f7816240402880134cd7174af64fbef010b1556071729f98a291f
 
 build:
   number: 0
   # jupyterlab is missing on s390x
-  skip: true  # [py<36 or (linux and s390x)]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  skip: true  # [py<38 or (linux and s390x)]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - jupyter-packaging >=0.7.9,<1.0
-    - jupyterlab >=3.0.0,<4.0.0
     - pip
     - python
-    - setuptools
-    - wheel
+    - hatchling >=1.5.0
+    - hatch-nodejs-version
   run:
     - python
+  run_constrained:
+    - jupyterlab >=3,<5
 
 test:
+  imports:
+    - jupyterlab_geojson
   requires:
     - pip
   commands:
