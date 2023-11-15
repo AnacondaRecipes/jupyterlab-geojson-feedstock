@@ -21,6 +21,7 @@ requirements:
     - python
     - hatchling >=1.5.0
     - hatch-nodejs-version
+    - hatch-jupyter-builder >=0.5
   run:
     - python
   run_constrained:
